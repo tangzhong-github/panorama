@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tcsr.panorama.sys.mapper.SysUserMapper">
+
+    <select id="pageList" resultType="com.tcsr.panorama.sys.vo.SysUserListVO">
+        select
+            su.*
+        from sys_user su
+        <where>
+            <if test="condition.username!=null and condition.username!=''">
+                and su.username like concat('%',#{condition.username},'%')
+            </if>
+        </where>
+        order by su.create_time desc
+    </select>
+
+</mapper>

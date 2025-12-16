@@ -1,0 +1,19 @@
+package com.tcsr.panorama.sys.service.impl;
+
+import com.tcsr.framework.mybatis.service.impl.BaseServiceImpl;
+import com.tcsr.panorama.sys.entity.SysUser;
+import com.tcsr.panorama.sys.mapper.SysUserMapper;
+import com.tcsr.panorama.sys.service.ISysUserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+/**
+ *
+ * @author tangzhong
+ * @since  2025-10-14 09:03
+ */
+@Service
+@RequiredArgsConstructor
+public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
+
+}

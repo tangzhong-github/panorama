@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -18,6 +19,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, SysUserRole> implements ISysUserRoleService {
+
+    @Override
+    public Optional<List<SysUserRole>> getUserRoles(Long userId) {
+        List<SysUserRole> userRoleList = listByCondition(SysUserRole::getUserId, userId);
+        return Optional.ofNullable(userRoleList);
+    }
 
     @Override
     public boolean validateRoleIsAssigned(Long roleId) {

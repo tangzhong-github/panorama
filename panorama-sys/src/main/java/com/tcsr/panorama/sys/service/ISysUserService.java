@@ -10,4 +10,6 @@ import com.tcsr.panorama.sys.entity.SysUser;
  */
 public interface ISysUserService extends IBaseService<SysUser> {
 
+    SysUser getByUsername(String username);
+
 }

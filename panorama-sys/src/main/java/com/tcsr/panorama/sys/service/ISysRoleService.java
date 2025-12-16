@@ -13,9 +13,14 @@ import java.util.List;
  */
 public interface ISysRoleService extends IBaseService<SysRole> {
 
+    List<SysRole> listByIds(List<Long> roleIds);
+
+    List<SysRole> listByRoleKeys(List<String> roleKeys);
+
     void add(SysRoleDTO addDTO);
 
     void edit(SysRoleDTO editDTO);
 
     void delete(Long id);
+
 }

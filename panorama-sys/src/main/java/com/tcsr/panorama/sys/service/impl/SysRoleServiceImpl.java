@@ -32,6 +32,16 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
     private final ISysUserRoleService sysUserRoleService;
 
     @Override
+    public List<SysRole> listByIds(List<Long> roleIds) {
+        return listByConditions(wrapper().in(SysRole::getId, roleIds));
+    }
+
+    @Override
+    public List<SysRole> listByRoleKeys(List<String> roleKeys) {
+        return listByConditions(wrapper().in(SysRole::getRoleKey, roleKeys));
+    }
+
+    @Override
     @Transactional(rollbackFor = RuntimeException.class)
     public void add(SysRoleDTO addDTO) {
         //校验角色名是否重复

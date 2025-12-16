@@ -4,6 +4,7 @@ import com.tcsr.framework.mybatis.service.IBaseService;
 import com.tcsr.panorama.sys.entity.SysUserRole;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -12,7 +13,10 @@ import java.util.List;
  */
 public interface ISysUserRoleService extends IBaseService<SysUserRole> {
 
+    Optional<List<SysUserRole>> getUserRoles(Long userId);
+
     boolean validateRoleIsAssigned(Long roleId);
 
     void deleteByRoleIds(List<Long> roleIds);
+
 }

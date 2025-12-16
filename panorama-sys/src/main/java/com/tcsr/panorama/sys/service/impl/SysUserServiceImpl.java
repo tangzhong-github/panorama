@@ -16,4 +16,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
 
+    @Override
+    public SysUser getByUsername(String username) {
+        return getByCondition(SysUser::getUsername, username);
+    }
 }

@@ -2,9 +2,9 @@ package com.tcsr.panorama.sys.service.impl;
 
 import com.tcsr.framework.common.utils.AssertUtils;
 import com.tcsr.framework.mybatis.entity.BaseEntity;
-import com.tcsr.framework.mybatis.execute.ExecuteDescriptorForAdd;
-import com.tcsr.framework.mybatis.execute.ExecuteDescriptorForDelete;
-import com.tcsr.framework.mybatis.execute.ExecuteDescriptorForEdit;
+import com.tcsr.framework.mybatis.execute.AddExecuteDescriptor;
+import com.tcsr.framework.mybatis.execute.DeleteExecuteDescriptor;
+import com.tcsr.framework.mybatis.execute.EditExecuteDescriptor;
 import com.tcsr.framework.mybatis.service.impl.BaseServiceImpl;
 import com.tcsr.panorama.sys.constant.SysDictConstants;
 import com.tcsr.panorama.sys.dto.SysRoleDTO;
@@ -56,7 +56,7 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
             AssertUtils.predicate(Objects::nonNull, stockByRoleKey, () -> String.format("角色Key【%s】已经存在，请确认！", executeDTO.getRoleKey()));
         };
         //新增
-        super.execute(ExecuteDescriptorForAdd.of(addDTO, validateRoleName.andThen(validateRoleKey)));
+        super.execute(AddExecuteDescriptor.of(addDTO, validateRoleName.andThen(validateRoleKey)));
     }
 
     @Override
@@ -80,7 +80,7 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
             }
         };
 
-        super.execute(ExecuteDescriptorForEdit.of(editDTO, bizHandlerBeforeExecute));
+        super.execute(EditExecuteDescriptor.of(editDTO, bizHandlerBeforeExecute));
     }
 
     @Override
@@ -95,6 +95,6 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
         };
         //强制删除：解除角色的所有分配关系
         Consumer<List<Long>> forceDeleteHandler = sysUserRoleService::deleteByRoleIds;
-        super.execute(ExecuteDescriptorForDelete.of(Collections.singletonList(id), ordinaryDeleteValidator, forceDeleteHandler));
+        super.execute(DeleteExecuteDescriptor.of(Collections.singletonList(id), ordinaryDeleteValidator, forceDeleteHandler));
     }
 }

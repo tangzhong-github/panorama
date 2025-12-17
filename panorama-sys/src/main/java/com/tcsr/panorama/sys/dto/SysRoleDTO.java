@@ -2,7 +2,7 @@ package com.tcsr.panorama.sys.dto;
 
 import com.tcsr.framework.common.validate.GroupAdd;
 import com.tcsr.framework.common.validate.GroupEdit;
-import com.tcsr.framework.mybatis.dto.BaseDTO;
+import com.tcsr.framework.common.dto.BaseDTO;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -91,7 +91,7 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
         AssertUtils.predicate(Objects::nonNull, stock, ()->String.format("系统预设角色[%s]不允许删除！", stock.getRoleName()));
         //校验：已分配给用户的角色不允许删除
         Consumer<List<Long>> ordinaryDeleteValidator = roleIds -> {
-            AssertUtils.predicate(sysUserRoleService::validateRoleIsAssigned, roleIds.getFirst(), "该角色已授权给用户，请确认！");
+            AssertUtils.predicate(sysUserRoleService::validateRoleIsAssigned, roleIds.get(0), "该角色已授权给用户，请确认！");
         };
         //强制删除：解除角色的所有分配关系
         Consumer<List<Long>> forceDeleteHandler = sysUserRoleService::deleteByRoleIds;

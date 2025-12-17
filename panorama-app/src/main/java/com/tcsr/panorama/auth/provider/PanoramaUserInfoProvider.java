@@ -1,8 +1,8 @@
 package com.tcsr.panorama.auth.provider;
 
+import com.tcsr.framework.common.constant.RoleKeyConstants;
 import com.tcsr.framework.redis.RedisUtils;
 import com.tcsr.framework.web.constant.RedisConstants;
-import com.tcsr.framework.web.constant.WebConstants;
 import com.tcsr.framework.web.provider.UserInfoProvider;
 import com.tcsr.framework.web.provider.UserPermissionProvider;
 import com.tcsr.framework.web.user.UserDTO;
@@ -64,7 +64,7 @@ public class PanoramaUserInfoProvider implements UserInfoProvider, UserPermissio
     @Override
     public boolean hasAnyRole(Long userId, List<String> roles) {
         List<String> userRoles = SecurityUtils.getUserRoles();
-        if(userRoles.contains(WebConstants.ROLE_ADMIN)){
+        if(userRoles.contains(RoleKeyConstants.ROLE_ADMIN)){
             return Boolean.TRUE;
         }
         return userRoles.stream().anyMatch(roles::contains);
@@ -73,7 +73,7 @@ public class PanoramaUserInfoProvider implements UserInfoProvider, UserPermissio
     @Override
     public boolean hasAnyPermission(Long userId, List<String> permissions) {
         List<String> userRoles = SecurityUtils.getUserRoles();
-        if(userRoles.contains(WebConstants.ROLE_ADMIN)){
+        if(userRoles.contains(RoleKeyConstants.ROLE_ADMIN)){
             return Boolean.TRUE;
         }
         //获取用户角色权限，判断是否存在指定的权限

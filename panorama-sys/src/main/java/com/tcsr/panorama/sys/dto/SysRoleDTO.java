@@ -12,7 +12,7 @@ import lombok.Setter;
  *
  * @author tangzhong
  * @date   2025-08-28 15:43
- * @since  V1.0.0.0
+ * @since  V1.0.0
  */
 @Getter
 @Setter

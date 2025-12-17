@@ -8,7 +8,7 @@ import com.tcsr.framework.common.constant.DictConstants;
  * 说明：字典范围(2001 - 2999)
  * @author tangzhong
  * @date  2025-11-20 9:50
- * @since  V1.0.0.0
+ * @since  V1.0.0
  */
 public interface SysDictConstants extends DictConstants {
 

@@ -1,10 +1,12 @@
 package com.tcsr.panorama.auth.provider;
 
 import com.tcsr.framework.redis.RedisUtils;
-import com.tcsr.framework.web.user.UserDTO;
 import com.tcsr.framework.web.constant.RedisConstants;
 import com.tcsr.framework.web.constant.WebConstants;
-import com.tcsr.framework.web.provider.TcsrUserInfoProvider;
+import com.tcsr.framework.web.provider.UserInfoProvider;
+import com.tcsr.framework.web.provider.UserPermissionProvider;
+import com.tcsr.framework.web.user.UserDTO;
+import com.tcsr.framework.web.utils.SecurityUtils;
 import com.tcsr.panorama.sys.entity.SysRole;
 import com.tcsr.panorama.sys.entity.SysUser;
 import com.tcsr.panorama.sys.entity.SysUserRole;
@@ -15,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -24,11 +25,11 @@ import java.util.Optional;
  *
  * @author tangzhong
  * @date   2025-10-14 09:03
- * @since  V1.0.0.0
+ * @since  V1.0.0
  */
 @Service
 @RequiredArgsConstructor
-public class PanoramicUserInfoProvider implements TcsrUserInfoProvider {
+public class PanoramaUserInfoProvider implements UserInfoProvider, UserPermissionProvider {
 
     private final ISysUserService sysUserService;
     private final ISysRoleService sysRoleService;
@@ -40,15 +41,29 @@ public class PanoramicUserInfoProvider implements TcsrUserInfoProvider {
         return Optional.ofNullable(user).map(this::buildUserDetails);
     }
 
+    private UserDTO buildUserDetails(SysUser user){
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserId(user.getId());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setPassword(user.getPassword());
+        Optional<List<SysUserRole>> userRoleOptional = sysUserRoleService.getUserRoles(user.getId());
+        userRoleOptional.ifPresent(sysUserRoles -> {
+            List<Long> roleIds = sysUserRoles.stream().map(SysUserRole::getRoleId).toList();
+            List<String> roleKeys = sysRoleService.listByIds(roleIds).stream().map(SysRole::getRoleKey).toList();
+            userDTO.setRoles(roleKeys);
+        });
+        return userDTO;
+    }
+
     @Override
     public List<String> getDataScopes(Long userId) {
-        List<SysRole> list = sysRoleService.listByRoleKeys(getUserRoles(userId));
+        List<SysRole> list = sysRoleService.listByRoleKeys(SecurityUtils.getUserRoles());
         return list.stream().map(SysRole::getDataScope).toList();
     }
 
     @Override
     public boolean hasAnyRole(Long userId, List<String> roles) {
-        List<String> userRoles = getUserRoles(userId);
+        List<String> userRoles = SecurityUtils.getUserRoles();
         if(userRoles.contains(WebConstants.ROLE_ADMIN)){
             return Boolean.TRUE;
         }
@@ -57,7 +72,7 @@ public class PanoramicUserInfoProvider implements TcsrUserInfoProvider {
 
     @Override
     public boolean hasAnyPermission(Long userId, List<String> permissions) {
-        List<String> userRoles = getUserRoles(userId);
+        List<String> userRoles = SecurityUtils.getUserRoles();
         if(userRoles.contains(WebConstants.ROLE_ADMIN)){
             return Boolean.TRUE;
         }
@@ -74,25 +89,6 @@ public class PanoramicUserInfoProvider implements TcsrUserInfoProvider {
             }
         }
         return false;
-    }
-
-    private List<String> getUserRoles(Long userId) {
-        List<String> userRoles = RedisUtils.getCacheMapValue(RedisConstants.USER_ROLES, String.valueOf(userId));
-        return Optional.ofNullable(userRoles).orElse(Collections.emptyList());
-    }
-
-    private UserDTO buildUserDetails(SysUser user){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(user.getId());
-        userDTO.setUsername(user.getUsername());
-        userDTO.setPassword(user.getPassword());
-        Optional<List<SysUserRole>> userRoleOptional = sysUserRoleService.getUserRoles(user.getId());
-        userRoleOptional.ifPresent(sysUserRoles -> {
-            List<Long> roleIds = sysUserRoles.stream().map(SysUserRole::getRoleId).toList();
-            List<String> roleKeys = sysRoleService.listByIds(roleIds).stream().map(SysRole::getRoleKey).toList();
-            userDTO.setRoles(roleKeys);
-        });
-        return userDTO;
     }
 
 }

@@ -12,12 +12,6 @@
     <artifactId>panorama-app</artifactId>
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.tcsr</groupId>
-            <artifactId>panorama-sys</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.tcsr</groupId>
             <artifactId>tcsr-framework-mybatis</artifactId>
@@ -25,13 +19,22 @@
         </dependency>
         <dependency>
             <groupId>com.tcsr</groupId>
-            <artifactId>tcsr-framework-web</artifactId>
+            <artifactId>tcsr-framework-redis</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.tcsr</groupId>
-            <artifactId>tcsr-framework-redis</artifactId>
+            <artifactId>tcsr-framework-web</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tcsr</groupId>
+            <artifactId>panorama-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tcsr</groupId>
+            <artifactId>panorama-sys</artifactId>
         </dependency>
     </dependencies>
 

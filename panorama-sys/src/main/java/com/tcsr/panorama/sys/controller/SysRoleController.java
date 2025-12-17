@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author tangzhong
  * @date   2025-08-28 15:04
- * @since  V1.0.0.0
+ * @since  V1.0.0
  */
 @Slf4j
 @RestController

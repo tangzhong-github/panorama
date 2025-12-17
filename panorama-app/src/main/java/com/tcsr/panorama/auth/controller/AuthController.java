@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  * 用户认证 Controller
  * @author tangzhong
  * @date   2025-08-28 15:00
- * @since  V1.0.0.0
+ * @since  V1.0.0
  */
 @RestController
 @RequiredArgsConstructor

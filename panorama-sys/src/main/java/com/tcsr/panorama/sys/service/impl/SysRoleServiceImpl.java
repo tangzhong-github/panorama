@@ -23,7 +23,8 @@ import java.util.function.Consumer;
 
 /**
  * @author tangzhong
- * @since  2025-08-28 16:03
+ * @date   2025-08-28 16:03
+ * @since  V1.0.0
  */
 @Service
 @RequiredArgsConstructor

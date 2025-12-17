@@ -7,7 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  *
  * @author tangzhong
- * @since  2025-08-28 15:56
+ * @date   2025-08-28 15:56
+ * @since  V1.0.0
  */
 @Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {

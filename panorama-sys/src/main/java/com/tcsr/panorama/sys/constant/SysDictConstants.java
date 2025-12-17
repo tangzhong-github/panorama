@@ -7,8 +7,8 @@ import com.tcsr.framework.common.constant.DictConstants;
  * 字典常量-系统管理模块
  * 说明：字典范围(2001 - 2999)
  * @author tangzhong
- * @date 2025-11-20 9:50
- * @since v1.0
+ * @date  2025-11-20 9:50
+ * @since  V1.0.0.0
  */
 public interface SysDictConstants extends DictConstants {
 

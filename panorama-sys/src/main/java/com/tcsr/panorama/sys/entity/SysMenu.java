@@ -15,22 +15,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@TableName("sys_org")
-public class SysOrg extends BaseEntity {
+@TableName("sys_permission")
+public class SysMenu extends BaseEntity {
 
-    /** 机构类型： sys_org_type */
-    private String orgType;
+    /** 菜单名称 */
+    private String menuName;
 
-    /** 机构名称 */
-    private String orgName;
+    /** 权限类型：sys_menu_type  */
+    private String menuType;
 
-    /** 机构码 */
-    private String roleCode;
-
-    /** 上级机构ID */
+    /** 父级菜单ID */
     private Long parentId;
 
-    /** 状态：common_turn_status */
+    /** 权限码 */
+    private String permissionCode;
+
+    /** 权限状态：common_turn_status */
     //@Metadata(dataType = MetadataType.CONSTANTS, value = SysDictConstants.COMMON_ABLE_STATUS_ENABLE)
     private String status;
 

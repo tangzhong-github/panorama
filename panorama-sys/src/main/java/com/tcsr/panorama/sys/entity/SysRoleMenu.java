@@ -17,19 +17,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@TableName("sys_role_permission")
-public class SysRolePermission extends BaseEntity{
+@TableName("sys_role_menu")
+public class SysRoleMenu extends BaseEntity{
 
     /** 角色ID */
     private Long roleId;
 
-    /** 权限ID */
-    private Long permissionId;
+    /** 菜单ID */
+    private Long menuId;
 
     @TableField(exist = false)
     private String roleKey;
-
-    @TableField(exist = false)
-    private String permissionCode;
 
 }

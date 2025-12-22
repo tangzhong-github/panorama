@@ -28,14 +28,14 @@ public interface SysDictConstants extends DictConstants {
     /** 系统-数据权限：机构及下级机构 */
     String SYS_DATA_SCOPE_ORG = "20020003";
 
-    /** 系统-权限类型 */
-    String SYS_PERMISSION_TYPE = "sys_permission_type";
-    /** 系统-权限类型：目录 */
-    String SYS_PERMISSION_TYPE_CATALOG = "20100001";
-    /** 系统-权限类型：菜单 */
-    String SYS_PERMISSION_TYPE_MENU = "20100002";
-    /** 系统-权限类型：按钮 */
-    String SYS_PERMISSION_TYPE_BUTTON = "20100003";
+    /** 系统-菜单类型 */
+    String SYS_MENU_TYPE = "SYS_MENU_TYPE";
+    /** 系统-菜单类型：目录 */
+    String SYS_MENU_TYPE_CATALOG = "20100001";
+    /** 系统-菜单类型：菜单 */
+    String SYS_MENU_TYPE_MENU = "20100002";
+    /** 系统-菜单类型：按钮 */
+    String SYS_MENU_TYPE_BUTTON = "20100003";
 
     /** 系统-用户类型 */
     String SYS_USER_TYPE = "sys_user_type";

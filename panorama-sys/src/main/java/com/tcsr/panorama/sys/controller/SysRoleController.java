@@ -5,7 +5,7 @@ import com.tcsr.framework.common.validate.GroupEdit;
 import com.tcsr.framework.mybatis.api.Page;
 import com.tcsr.framework.mybatis.api.PageResult;
 import com.tcsr.framework.web.controller.BaseController;
-import com.tcsr.panorama.sys.condition.SysRoleCondition;
+import com.tcsr.panorama.sys.request.SysRoleRequest;
 import com.tcsr.panorama.sys.dto.SysRoleDTO;
 import com.tcsr.panorama.sys.entity.SysRole;
 import com.tcsr.panorama.sys.service.ISysRoleService;
@@ -36,7 +36,7 @@ public class SysRoleController extends BaseController {
     private final ISysRoleService sysRoleService;
 
     @GetMapping("/pageList")
-    public PageResult<SysRole> pageList(SysRoleCondition request) {
+    public PageResult<SysRole> pageList(SysRoleRequest request) {
         return sysRoleService.pageList(Page.of(request));
     }
 

@@ -1,6 +1,6 @@
-package com.tcsr.panorama.sys.condition;
+package com.tcsr.panorama.sys.request;
 
-import com.tcsr.framework.mybatis.api.QueryCondition;
+import com.tcsr.framework.common.api.Request;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class SysUserCondition extends QueryCondition {
+public class SysUserRequest extends Request {
 
     /** 用户名 */
     private String username;

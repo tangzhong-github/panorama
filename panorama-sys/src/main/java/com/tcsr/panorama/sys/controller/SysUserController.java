@@ -3,7 +3,7 @@ package com.tcsr.panorama.sys.controller;
 import com.tcsr.framework.mybatis.api.Page;
 import com.tcsr.framework.mybatis.api.PageResult;
 import com.tcsr.framework.web.controller.BaseController;
-import com.tcsr.panorama.sys.condition.SysUserCondition;
+import com.tcsr.panorama.sys.request.SysUserRequest;
 import com.tcsr.panorama.sys.service.ISysUserService;
 import com.tcsr.panorama.sys.vo.SysUserListVO;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +25,8 @@ public class SysUserController extends BaseController {
     private final ISysUserService sysUserService;
 
     @GetMapping("/pageList")
-    public PageResult<SysUserListVO> pageList(SysUserCondition condition) {
-        return sysUserService.pageList(Page.of(condition));
+    public PageResult<SysUserListVO> pageList(SysUserRequest request) {
+        return sysUserService.pageList(Page.of(request));
     }
 
 }

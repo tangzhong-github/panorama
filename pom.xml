@@ -4,7 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>panorama</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <description>全场景开发脚手架</description>
@@ -20,6 +19,10 @@
         <module>panorama-sys</module>
         <module>panorama-common</module>
     </modules>
+
+    <properties>
+        <version>1.0.0-SNAPSHOT</version>
+    </properties>
 
     <dependencyManagement>
         <dependencies>

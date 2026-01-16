@@ -9,6 +9,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
+    <packaging>pom</packaging>
     <artifactId>panorama-app</artifactId>
 
     <dependencies>
